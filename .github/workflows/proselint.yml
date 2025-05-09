@@ -1,0 +1,38 @@
+name: Proselint
+
+on:
+  push:
+    paths:
+      - "**/*.md"
+  pull_request:
+    paths:
+      - "**/*.md"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install proselint
+        run: pip install proselint
+
+      - name: Run proselint on Markdown files
+        run: |
+          echo "Looking for Markdown files..."
+          files=$(find . -type f -name "*.md")
+          if [ -z "$files" ]; then
+            echo "No Markdown files found."
+          else
+            for file in $files; do
+              echo "Linting $file"
+              proselint "$file"
+            done
+          fi
