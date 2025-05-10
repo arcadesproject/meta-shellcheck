@@ -56,3 +56,4 @@ This repository now includes a GitHub Actions workflow that uses proselint to ch
     
 -   **Action Details:** The workflow, defined in `.github/workflows/proselint.yml`, sets up a Python environment, installs proselint, and iterates over all Markdown files to run the linting checks. Any issues found will be reported, providing guidance on improving the writing quality.
 
+And signed with GPG
